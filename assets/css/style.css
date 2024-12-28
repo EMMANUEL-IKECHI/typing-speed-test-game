@@ -14,7 +14,7 @@ body {
     background-color: #17A2B8;
 }
 .wrapper {
-    max-width: 450px;
+    width: 500px;
     min-height: 300px;
     padding: 30px;
     border-radius: 8px;
@@ -25,6 +25,9 @@ body {
     height: 180px;
     overflow: auto;
     padding: 10px;
+    font-size: 19px;
+    font-weight: 400;
+    line-break: anywhere;
 }
 .content-box {
     border: thin solid #aaa;
@@ -47,4 +50,28 @@ body {
     width: calc(100% - 100px);
     justify-content: space-between;
     align-items: center;
+}
+.result-details p {
+    display: inline-block;
+    font-size: 13px;
+}
+.result-details span {
+    font-size: 16px;
+    font-weight: 500;
+}
+.result-details li:not(:first-child) {
+    padding-left: 10px;
+    border-left: thin solid #aaa;
+}
+.try-again {
+    outline: none;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #17A2B8;
+    transition: all .001s ease-in ;
+}
+.try-again:active {
+    scale: 0.9;
 }
