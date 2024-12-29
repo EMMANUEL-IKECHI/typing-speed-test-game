@@ -33,6 +33,36 @@ body {
     border: thin solid #aaa;
     border-radius: 5px;
 }
+.content-box span {
+    position: relative;
+}
+.content-box span.correct {
+    color: #56964f;
+}
+.content-box span.incorrect {
+    outline: 1px solid #fff;
+    background: #ffc0cb;
+    color: #cb3439;
+    border-radius: 4px;
+}
+.content-box span.active {
+    color: #17A2B8;
+}
+.content-box span.active::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+    opacity: 0;
+    animation: anim 1s linear infinite;
+    background-color: #56964f;
+}
+@keyframes anim {
+    50% {
+        opacity: 1;
+    }
+}
 .content-box p::-webkit-scrollbar {
     width: 0;
 }
@@ -74,4 +104,8 @@ body {
 }
 .try-again:active {
     scale: 0.9;
+}
+input {
+    opacity: 0;
+    position: absolute;
 }
