@@ -1,8 +1,11 @@
 const typingText = document.querySelector(".typing-text p");
 const textInput = document.querySelector('input');
 const tryAgain = document.querySelector(".try-again");
+const timeText = document.querySelector('.time');
 
-let charIndex = mistakes = cpm = wpm = 0            ;
+let charIndex = mistakes = cpm =  0;
+let maxTime = 60;
+let timeleft = maxTime;
 
 //Generates a random paragraph
 function loadParagraph() {
@@ -14,6 +17,7 @@ function loadParagraph() {
     });
 }
 
+//Typing function that checks if the keystrokes are correct or not
 function initTyping() {
     let char = typingText.querySelectorAll('span');
     let typedChar = textInput.value.split('')[charIndex];
@@ -37,11 +41,45 @@ function initTyping() {
     }
 }
 
+function initTimer () {
+    setInterval(counter, 1000);
+}
+
+function counter() {
+    while(timeleft > 0) {
+        timeleft--;
+        timeText.innerText = timeleft;
+    }
+}
+
+function wpmCounter () {
+    let totalText = textInput.value.split(' ');
+    console.log(totalText);
+    totalText = totalText.filter((item)=>{
+        return item.length > 0;
+    });
+    console.log(totalText);
+    let wpm = totalText.length / maxTime;
+    console.log(wpm);
+}
+function resetGame() {
+    loadParagraph();
+    charIndex = 0;
+    textInput.value = '';
+
+}
+textInput.addEventListener('keydown', (event)=>{
+    if (event.key === 'Enter') {
+        wpmCounter();
+    }
+})
+
 typingText.addEventListener('click', ()=> textInput.focus());
 document.addEventListener('keydown', ()=> {
     textInput.focus();
+    initTimer();
 });
 
 textInput.addEventListener('input', initTyping);
-tryAgain.addEventListener('click', loadParagraph);
+tryAgain.addEventListener('click', resetGame);
 loadParagraph();
